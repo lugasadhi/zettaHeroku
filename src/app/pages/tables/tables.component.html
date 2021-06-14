@@ -1,0 +1,26 @@
+<div class="d-flex">
+    <div class="w-50">
+        <app-students
+            (correctorData)="setData($event)"
+        ></app-students>
+    </div>
+    <div class="w-50">
+        <app-school
+            #school
+        ></app-school>
+    </div>
+</div>
+<div class="d-flex justify-content-end">
+    <div class="d-flex mx-4">
+        <button class="btn-yellow " mat-button>
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button class="btn-yellow mx-2" mat-button>
+            <i class="fas fa-reply"></i>
+            Save & Leave</button>
+        <button  class="btn-disable" mat-button>
+            <i class="fab fa-telegram-plane text-disable"></i>
+            Send Notificaitons</button>
+    </div>
+</div>

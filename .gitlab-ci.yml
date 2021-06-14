@@ -1,0 +1,24 @@
+image: node:latest
+
+pages:
+  cache:
+    paths:
+    - node_modules/
+
+  stage: deploy
+  script:
+  - mkdir public/
+  - npm install -g @angular/cli@11.0.5
+  - npm install
+  - npm install --save ansi-colors
+  - npm --version
+  - ng --version
+  - node --version
+  - node --max-old-space-size=8192 ./node_modules/@angular/cli/bin/ng build --aot --outputHashing=all --base-href https://lugasadhi.gitlab.io/zetta/
+  - mv dist/octomate-web-admin/* public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - development
+  - pages

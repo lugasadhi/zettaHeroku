@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+body{
+    background: #424242;
+}
+.text-white{
+    color: #fff !important;
+}
+.font-weight-bold{
+    font-weight: bold;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.justify-content-space-between{
+    justify-content: space-between;
+}
+
+
+// table
+.mat-header-row{
+    background-color: #000;
+    color: #fff;
+}
+.mat-header-cell{
+    color: #fff;
+    text-align: center;
+}
+.mat-row:nth-child(even){
+    background-color: #424242;
+    color: #fff;
+}
+.mat-row:nth-child(odd){
+    background-color: #607d8b;
+    color: #fff;
+}
+td{
+    border:1px solid #575f62 !important;
+}
+
+.text-white{
+    color: #fff !important;
+}
+.ml-s{
+    margin-left: 10px;
+}
+
+//page
+.mat-paginator{
+    background: transparent !important;
+}
+.mat-paginator-page-size{
+    display: none !important;
+}
+.mat-paginator-range-label{
+    color: #fff;
+}
+.mat-paginator-navigation-previous,
+.mat-paginator-navigation-next {
+    filter: invert(1) !important;
+}
+
+//input
+.mat-form-field-type-mat-input.text-white{
+    margin-top: 10px;
+    .mat-form-field-label{
+        color: #fff !important;
+    }
+    .mat-form-field-underline{
+        background: #fff 
+    }
+}
+
+ng-select{
+    .ng-select-container{
+        border: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        border-bottom: 1px solid #fff !important;
+    }
+    .ng-clear-wrapper,
+    .ng-value-label{
+        color: #fff !important;
+    }
+}

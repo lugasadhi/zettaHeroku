@@ -1,0 +1,146 @@
+<div class="text-white">List of ALL Students preparing S-TFT 4</div>
+<div class="bs">
+    <div class="d-flex justify-content-end align-items-start mb-3">
+      <div class="mr-xs">
+        <ng-select [items]="['comma ,']" style="width: 150px;"
+        >
+        </ng-select>
+      </div>
+        <button class="blue-btn butn mr-xs">
+          <i class="fas fa-file-csv text-white"></i>
+           Export CSV</button>
+        <button class="blue-btn butn"> 
+          <i class="fas fa-undo text-white"></i>
+          Reset</button>
+    </div>
+
+    <div>
+        <table mat-table [dataSource]="dataSource" class="w-100">
+
+            <ng-container matColumnDef="student">
+              <th mat-header-cell *matHeaderCellDef> 
+                  <div class="text-center">
+                       Students
+                  </div>
+                  <div>
+                    <mat-form-field class="text-white">
+                        <input matInput placeholder="Search" [(ngModel)]="filter.student_full_name" (ngModelChange)="filterTable()">
+                      </mat-form-field>
+                  </div>
+                </th>
+              <td mat-cell *matCellDef="let element" class="text-white"> 
+                  <span class="text-uppercase" style="margin-right: 5px;">{{element.student_id.last_name}}</span>
+                  <span >{{element.student_id.first_name}}</span>
+                </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="school_ori">
+              <th mat-header-cell *matHeaderCellDef> 
+                  <div class="text-center">
+                       Schools Origin
+                  </div>
+                  <div class="text-center">
+                    <mat-form-field class="text-white">
+                        <input type="text"
+                               placeholder="Search"
+                               aria-label="Number"
+                               [(ngModel)]="filter.school_name" (ngModelChange)="filterTable()"
+                               matInput
+                               [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let item of sch" [value]="item.school.short_name">
+                                {{item.school.short_name}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                  </div>
+                </th>
+              <td mat-cell *matCellDef="let element" class="text-white text-center" style="padding-left: 10px;"> {{element.school_origin_id.short_name}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="school_correcting">
+              <th mat-header-cell *matHeaderCellDef> 
+                  <div class="text-center">
+                       School Correcting
+                  </div>
+                  <div class="text-center">
+                    <mat-form-field class="text-white">
+                        <input type="text"
+                               placeholder="Search"
+                               aria-label="Number"
+                               matInput
+                               [matAutocomplete]="auto1">
+                        <mat-autocomplete #auto1="matAutocomplete">
+                                <mat-option *ngFor="let item of sch" [value]="item.school.short_name">
+                                      {{item.school.short_name}}
+                                </mat-option>
+                              </mat-autocomplete>
+                      </mat-form-field>
+                  </div>
+                </th>
+              <td mat-cell *matCellDef="let element; let idx = index;"> 
+                <div class="px-3">
+                  <ng-select [items]="element.otherSchool"
+                          bindLabel="label"
+                          bindValue="value"
+                          [(ngModel)]="element.school_correcting_id"
+                          (ngModelChange)="changeSchool($event, idx)"
+                  >
+                  </ng-select>
+                </div>
+              </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cross_corrector">
+              <th mat-header-cell *matHeaderCellDef> 
+                  <div class="text-center">
+                       Cross Corrector
+                  </div>
+                  <div class="text-center">
+                    <mat-form-field class="text-white">
+                        <input type="text"
+                               placeholder="Search"
+                               aria-label="Number"
+                               matInput
+                               [matAutocomplete]="auto2">
+                        <mat-autocomplete #auto2="matAutocomplete">
+                                <mat-option *ngFor="let item of cr" [value]="item.school_correcting_corrector_id.first_name">
+                                      {{item.school_correcting_corrector_id.first_name}}
+                                </mat-option>
+                              </mat-autocomplete>
+                      </mat-form-field>
+                  </div>
+                </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="px-3">
+                  <ng-select [items]="element.correctorList"
+                      bindLabel="label"
+                      bindValue="value"
+                      [(ngModel)]="element.school_correcting_corrector_id"
+                      (ngModelChange)="sendData()"
+                      >
+                  </ng-select>
+                </div>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+        </div>
+        <div class="d-flex justify-content-space-between">
+            <div class="text-white pt-4">
+              {{data.length}} total / {{16 - countToBeAssign()}} remain to be assigned
+            </div>
+            <div>
+                <div class="pgnt">
+                    <mat-paginator 
+                    [pageSize]="7"
+                    class="oct-table-page"
+                    >
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+</div>
